@@ -11,5 +11,5 @@ echo $sql = "INSERT INTO clientes (mes_cliente,quantidade) VALUES ('$mes',$quant
 $inserir = mysqli_query($conexao,$sql);
 
 
-header('Location: dashboard.php?pagina=clientes')
+header('Location: index.php?pagina=clientes')
 ?>

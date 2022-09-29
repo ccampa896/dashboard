@@ -1,102 +1,52 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Sep 25, 2022 at 04:33 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+CREATE TABLE meses (
+  id_mes int NOT NULL,
+  mes varchar(20) NOT NULL PRIMARY KEY
+);
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+INSERT INTO meses (id_mes, mes) VALUES
+(4, 'ABR'),
+(11, 'NOV'),
+(8, 'AGO'),
+(12, 'DEZ'),
+(9, 'SET'),
+(2, 'FEV'),
+(1, 'JAN'),
+(7, 'JUL'),
+(6, 'JUN'),
+(5, 'MAI'),
+(10, 'OUT'),
+(3, 'MAR');
+
+CREATE TABLE clientes (
+  id_cliente int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  mes_cliente varchar(10) NOT NULL,
+  quantidade int NOT NULL,
+  FOREIGN KEY (mes_cliente) REFERENCES meses(mes)
+); 
+
+INSERT INTO clientes (mes_cliente, quantidade) VALUES
+('JAN', 120),
+('FEV', 160),
+('MAR', 300);
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `dash1`
---
+CREATE TABLE vendas (
+  id_venda int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  mes_venda varchar(20) NOT NULL,
+  quantidade_venda int NOT NULL,
+  valor_venda float NOT NULL,
+  FOREIGN KEY (mes_venda) REFERENCES meses(mes)
+);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `clientes`
---
+INSERT INTO vendas (mes_venda, quantidade_venda, valor_venda) VALUES
+('FEV', 98, 2155.02),
+('JAN', 44, 967.56),
+('JAN', 100, 2199),
+('MAR', 5, 109.95),
+('JAN', 18, 395.82),
+('MAR', 2, 43.98);
 
-CREATE TABLE `clientes` (
-  `id_cliente` int(11) NOT NULL,
-  `mes_cliente` varchar(10) NOT NULL,
-  `quantidade` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `clientes`
---
 
-INSERT INTO `clientes` (`id_cliente`, `mes_cliente`, `quantidade`) VALUES
-(1, 'JAN', '120'),
-(2, 'FEV', '160'),
-(3, 'MAR', '300');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vendas`
---
-
-CREATE TABLE `vendas` (
-  `id_venda` int(11) NOT NULL,
-  `mes_venda` varchar(50) NOT NULL,
-  `quantidade_venda` int(11) NOT NULL,
-  `valor_venda` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `vendas`
---
-
-INSERT INTO `vendas` (`id_venda`, `mes_venda`, `quantidade_venda`, `valor_venda`) VALUES
-(4, 'JAN', 44, 967.56),
-(5, 'FEV', 98, 2155.02),
-(6, 'MAR', 10, 219.9);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `clientes`
---
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id_cliente`);
-
---
--- Indexes for table `vendas`
---
-ALTER TABLE `vendas`
-  ADD PRIMARY KEY (`id_venda`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `vendas`
---
-ALTER TABLE `vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

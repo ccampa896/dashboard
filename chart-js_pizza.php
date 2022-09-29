@@ -2,7 +2,7 @@
 
 include 'conexao/conexao.php';
 
-$sql = "SELECT * FROM vendas";
+$sql = "SELECT mes_venda, SUM(quantidade_venda) AS soma FROM vendas INNER JOIN meses ON mes_venda = meses.mes GROUP BY mes_venda ORDER BY meses.id_mes";
 $buscar = mysqli_query($conexao,$sql);
 
 #chart.js - Preparando valores#
@@ -15,7 +15,7 @@ $quantidade = '';
 while ($dados = mysqli_fetch_array($buscar)) {
 
   $mes = $mes . '"' . $dados['mes_venda'] . '",';
-  $quantidade = $quantidade . '"' . $dados['quantidade_venda'] . '",';
+  $quantidade = $quantidade . '"' . $dados['soma'] . '",';
   
 
    $mes = trim($mes); #tira os espaços da variável
@@ -61,12 +61,31 @@ while ($dados = mysqli_fetch_array($buscar)) {
             data:[<?php echo $quantidade; ?>],
             backgroundColor: [
             '#F7464A',
-      			'#46BFBD',
-      			'#FDB45C'],
+            '#46BFBD',
+            '#FDB45C',
+            '#C620FF',
+            '#0B8DD8',
+            '#0000CD',
+            '#00CED1',
+            '#98FB98',
+            '#FFD700',
+            '#363636',
+            '#6A5ACD',
+            '#EE82EE'
+            ],
             highlight: [
             '#FF5A5E',
-      			'#5AD3D1',
-      			'#FFC870'
+            '#5AD3D1',
+            '#FFC870',
+            '#C300DC',
+            '#04337B',
+            '#0000FF',
+            '#00FFFF',
+            '#00FF7F',
+            '#FFFF00',
+            '#1C1C1C',
+            '#836FFF',
+            '#FF00FF'
             ],
             borderWidth: 3,
             hoverBorderWidth: 10

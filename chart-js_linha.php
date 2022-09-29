@@ -2,7 +2,7 @@
 
 include 'conexao/conexao.php';
 
-$sql = "SELECT * FROM clientes";
+$sql = "SELECT mes_cliente, SUM(quantidade) AS soma FROM clientes INNER JOIN meses ON mes_cliente = meses.mes GROUP BY mes_cliente ORDER BY meses.id_mes";
 $buscar = mysqli_query($conexao,$sql);
 
 #chart.js - Preparando valores#
@@ -15,7 +15,7 @@ $quantidade = '';
 while ($dados = mysqli_fetch_array($buscar)) {
 
   $mes = $mes . '"' . $dados['mes_cliente'] . '",';
-  $quantidade = $quantidade . '"' . $dados['quantidade'] . '",';
+  $quantidade = $quantidade . '"' . $dados['soma'] . '",';
   
 
    $mes = trim($mes); #tira os espaços da variável

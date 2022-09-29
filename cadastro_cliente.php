@@ -17,18 +17,18 @@
 			<div class="form-group">
 				<label>Selecione o Mês</label>
 				<select class="form-control" name="mes">
-					<option>Jan</option>
-					<option>Fev</option>
-					<option>Mar</option>
-					<option>Abr</option>
-					<option>Mai</option>
-					<option>Jun</option>
-					<option>Jul</option>
-					<option>Ago</option>
-					<option>Set</option>
-					<option>Out</option>
-					<option>Nov</option>
-					<option>Dez</option>
+					<option>JAN</option>
+					<option>FEV</option>
+					<option>MAR</option>
+					<option>ABR</option>
+					<option>MAI</option>
+					<option>JUN</option>
+					<option>JUL</option>
+					<option>AGO</option>
+					<option>SET</option>
+					<option>OUT</option>
+					<option>NOV</option>
+					<option>DEZ</option>
 				</select>
 			</div>
 			<div class="form-group">
